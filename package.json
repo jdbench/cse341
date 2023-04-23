@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "npm test",
+    "test": "",
     "build": "npm test"
   },
   "repository": {
