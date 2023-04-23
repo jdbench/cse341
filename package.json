@@ -7,7 +7,7 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "test": "",
-    "build": "npm test"
+    "build": "npm ci"
   },
   "repository": {
     "type": "git",
