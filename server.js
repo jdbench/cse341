@@ -1,10 +1,23 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
-const homeRoutes = require('./routes');
+const mongo = require("./db/connect.js");
+const routes = require("./routes");
+const bodyParser = require("body-parser");
+const port = process.env.PORT || 8080;
 
-app.use('/', homeRoutes);
+app
+  .use(bodyParser.json())
+  .use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    next();
+  })
+  .use("/", routes);
 
-app.listen(port, () => {
-    console.log('Server is runing on port ' + port);
+mongo.initDb((e, mongo) => {
+  if (e) console.error(e);
+  else {
+    app.listen(port, () => {
+      console.log("Server is runing on port " + port);
+    });
+  }
 });
